@@ -23,7 +23,11 @@
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
-    
+
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
   
@@ -201,7 +205,9 @@
                 <div class="col-md-12">
                   <textarea name="" id="sheduleMessage" class="form-control" placeholder="Additional Message - i.e. something that can help us serve you better." cols="30" rows="10" required></textarea>
                 </div>
-              </div>
+              </div><br/>
+              <div class="g-recaptcha" data-sitekey="6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G"></div>
+              <br/>
               <div class="form-group row">
                 <div class="col-md-12 mr-auto">
                   <button type="submit" id="sheduleBtn" class="btn btn-block btn-primary text-white py-2 px-5">
