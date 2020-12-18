@@ -2,7 +2,7 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
     console.log('Shedule Pick up Api was called..')
     $.ajax({
         type: 'POST',
-        url: "http://127.0.0.1:8000/api/pick-up/",
+        url: "https://laundary-api.herokuapp.com/api/pick-up/",
         headers: {
         },
         data: {
