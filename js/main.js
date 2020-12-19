@@ -410,7 +410,7 @@ if (sheduleForm !== null) {
 	// shedule a Pick Up
 	sheduleForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		let recaptcha = grecaptcha.getResponse(widget1)
+		let recaptcha = grecaptcha.getResponse()
 		let validity = document.getElementById('recaptchaValidityShedule')
 		if (recaptcha.length == 0 ) {
 			validity.classList.remove('d-none')
