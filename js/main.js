@@ -409,9 +409,9 @@ if (sheduleForm !== null) {
 	// shedule a Pick Up
 	sheduleForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		let recaptcha = $('#g-recaptcha-shedule').val()
+		let recaptcha = document.getElementById('g-recaptcha-shedule')
 		let validity = document.getElementById('recaptchaValidityShedule')
-		if (recaptcha === "") {
+		if (recaptcha.getResponse() === "" ) {
 			validity.classList.remove('d-none')
 		} else {
 			validity.classList.add('d-none')
@@ -423,9 +423,9 @@ if (contactForm !== null) {
 	// contacts events
 	contactForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		let recaptcha = $('#g-recaptcha-contact').val()
+		let recaptcha = document.getElementById('g-recaptcha-contact')
 		let validity = document.getElementById('recaptchaValidityContact')
-		if (recaptcha === "") {
+		if (recaptcha.getResponse() === "" ) {
 			validity.classList.remove('d-none')
 		} else {
 			validity.classList.add('d-none')
@@ -433,13 +433,13 @@ if (contactForm !== null) {
 		}
 	});
 }
-if (contactForm !== null) {
+if (emailForm !== null) {
 	// email subscribe
 	emailForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		let recaptcha = $('#g-recaptcha-email').val()
+		let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
-		if (recaptcha === "") {
+		if (recaptcha.getResponse() === "" ) {
 			validity.classList.remove('d-none')
 		} else {
 			validity.classList.add('d-none')
