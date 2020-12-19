@@ -386,7 +386,7 @@ const sheduleForm = document.getElementById('sheduleForm'),
 	subscribeEmail = document.getElementById('subscribeEmailInput'),
 
 	// notification Div Element
-	notificationDiv = document.getElementById('notification-card')
+	notificationDiv = document.getElementById('notification-card1')
 // get Gallary Image
 
 if (typeof gallaryApi !== 'undefined') {
