@@ -276,20 +276,20 @@ const faqApi = () => {
 
 };
 
-const subscribeEmailPApi = (email, notificationDivElement) => {
+const subscribeEmailPApi = (email, notificationCardId, notificationDivElement, preloaderId) => {
     console.log('Subscribe Email Api was called..')
 
     const emailIsValid = (email) => {
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
     }
     if (!email) {
-        $('#notification-card').show()
-        $('#notification-card').removeClass('alert-success')
-        $('#notification-card').addClass('alert-warning')
+        $(`#${notificationCardId}`).show()
+        $(`#${notificationCardId}`).removeClass('alert-success')
+        $(`#${notificationCardId}`).addClass('alert-warning')
         notificationDivElement.firstElementChild.innerHTML = `Opps!🙁 You have an email address isn't it. <span class="icon-exclamation-circle pl-2"></span>`
 
         setTimeout((e) => {
-            $('#notification-card').hide()
+            $(`#${notificationCardId}`).hide()
         }, 5000);
 
     }else if ( emailIsValid(email) ) {
@@ -303,33 +303,33 @@ const subscribeEmailPApi = (email, notificationDivElement) => {
             },
             beforeSend: () => {
                 emailBtn.firstElementChild.innerText = 'Processing..'
-                $('#emailBtnSpinner').show()
+                $(`#${preloaderId}`).show()
                 emailBtn.setAttribute('disabled', '')
             },
             complete: () => {
                 emailBtn.removeAttribute('disabled', '')
                 emailBtn.firstElementChild.innerText = 'Subscribe'
-                $('#emailBtnSpinner').hide()
+                $(`#${preloaderId}`).hide()
             },
             success: (data) => {
                 // no need using the data
                 console.log('data', data)
-                $('#notification-card').show()
-                $('#notification-card').removeClass('alert-warning')
-                $('#notification-card').addClass('alert-success')
+                $(`#${notificationCardId}`).show()
+                $(`#${notificationCardId}`).removeClass('alert-warning')
+                $(`#${notificationCardId}`).addClass('alert-success')
                 notificationDivElement.firstElementChild.innerHTML = `Thanks!😀, your <span style="font-weight: bold;">Email</span> has been added to our Mailing List, get ready for some Lovely Laundary Tips. <span class="icon-check pl-2"></span>`
 
-                sheduleForm.reset()
+                emailForm.reset()
                 setTimeout((e) => {
-                    $('#notification-card').hide()
+                    $(`#${notificationCardId}`).hide()
                 }, 7000)
             },
             error: (err) => {
                 // do something
                 console.log('failed to submit: ', err)
-                $('#notification-card').show()
-                $('#notification-card').removeClass('alert-success')
-                $('#notification-card').addClass('alert-warning')
+                $(`#${notificationCardId}`).show()
+                $(`#${notificationCardId}`).removeClass('alert-success')
+                $(`#${notificationCardId}`).addClass('alert-warning')
 
                 if (err['responseJSON']['email']) {
                     let apiErrorMessage = err['responseJSON']['email']
@@ -339,20 +339,20 @@ const subscribeEmailPApi = (email, notificationDivElement) => {
                 }
 
                 setTimeout((e) => {
-                    $('#notification-card').hide()
+                    $(`#${notificationCardId}`).hide()
                     emailBtn.firstElementChild.innerText = "Subscribe"
                 }, 5000)
             },
         });
 
     } else {
-        $('#notification-card').show()
-        $('#notification-card').removeClass('alert-success')
-        $('#notification-card').addClass('alert-warning')
+        $(`#${notificationCardId}`).show()
+        $(`#${notificationCardId}`).removeClass('alert-success')
+        $(`#${notificationCardId}`).addClass('alert-warning')
         notificationDivElement.firstElementChild.innerHTML = `Invalid Email!🙁 Please check what you entered and try again. <span class="icon-exclamation-circle pl-2"></span>`
 
         setTimeout((e) => {
-            $('#notification-card').hide()
+            $(`#${notificationCardId}`).hide()
         }, 5000)
 
     }

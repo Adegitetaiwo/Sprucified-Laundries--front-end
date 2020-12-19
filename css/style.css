@@ -1991,7 +1991,7 @@ figure figcaption {
   background: #64a6e4;
   color: #c9c9c9;
 }
-#notification-card {
+#notification-card1, #notification-card2 {
   width: 200px;
   z-index: 100;
   position: fixed;
@@ -2001,4 +2001,13 @@ figure figcaption {
 }
 .gallarySpinner{
   margin: auto;
+}
+
+@media (max-width: 320px) {
+  .recaptcha-container {
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+  }
 }

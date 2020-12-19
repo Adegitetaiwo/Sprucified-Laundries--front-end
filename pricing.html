@@ -38,6 +38,21 @@
         }
     </style>
 
+    <script type="text/javascript">
+        var widgetId1;
+        var widgetId2;
+        var widgetId3;
+
+        var onloadCallback = function () {
+            widgetId = grecaptcha.render('g-recaptcha-pricing-email-subscribe', {
+                'sitekey': '6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G'
+            });
+
+        };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
@@ -138,6 +153,9 @@
             
             </section>
 
+        <div id="notification-card2" class="card alert alert-success text-center">
+            <p>Notification card</p>
+        </div>
 
 
         <footer class="site-footer">
@@ -170,14 +188,24 @@
                         </div>
 
                         <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-                        <form action="#" method="post" class="footer-subscribe">
+                        <form action="?" id="pricingEmailForm" method="post" class="footer-subscribe">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control border-secondary text-white bg-transparent"
+                                <input type="text" id="pricingEmail" class="form-control border-secondary text-white bg-transparent"
                                     placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary text-black" type="button"
-                                        id="button-addon2">Send</button>
+                                    <button id="pricingEmailBtn" class="btn btn-primary text-black" type="submit">
+                                        <span>Subscribe</span>
+                                        <span>
+                                            <div id="pricingemailBtnSpinner" class="spinner-grow spinner-grow-sm ml-3" role="status"></div>
+                                        </span>
+                                    </button>
                                 </div>
+                                    <br /><br />
+                                    <div class="g-recaptcha recaptcha-container" id="g-recaptcha-pricing-email-subscribe">
+                                    </div>
+                                    <p class="d-none" id="recaptchaPricingValidityEmail" style="color: #ff0000;">reCaptcha must be checked<span
+                                            class="icon-exclamation-circle ml-2"></span></p>
+                                    <br />
                             </div>
                         </form>
 
@@ -205,7 +233,9 @@
             </div>
         </footer>
 
-    </div> <!-- .site-wrap -->
+    </div> 
+    
+    <!-- .site-wrap -->
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -280,6 +310,116 @@
 
             };
             pricingListApi();
+
+        // hide all preloader and notification div
+        $('#notification-card2').hide();
+        $('#pricingemailBtnSpinner').hide();
+
+        // email subsciption
+        pricingEmailForm.addEventListener('submit', (evt) => {
+            console.log('clicked!')
+            evt.preventDefault();
+            const pricingSubscribeEmailApi = (email, notificationCardId, notificationDivElement, preloaderId) => {
+                console.log('Pricing Subscribe Email Api was called..')
+
+                const emailIsValid = (email) => {
+                    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)
+                }
+                if (!email) {
+                    $(`#${notificationCardId}`).show()
+                    $(`#${notificationCardId}`).removeClass('alert-success')
+                    $(`#${notificationCardId}`).addClass('alert-warning')
+                    notificationDivElement.firstElementChild.innerHTML = `Opps!🙁 You have an email address isn't it. <span class="icon-exclamation-circle pl-2"></span>`
+
+                    setTimeout((e) => {
+                        $(`#${notificationCardId}`).hide()
+                    }, 5000);
+
+                } else if (emailIsValid(email)) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "https://laundary-api.herokuapp.com/api/email-subscription/",
+                        headers: {
+                        },
+                        data: {
+                            email: email
+                        },
+                        beforeSend: () => {
+                            pricingEmailBtn.firstElementChild.innerText = 'Processing..'
+                            $(`#${preloaderId}`).show()
+                            pricingEmailBtn.setAttribute('disabled', '')
+                        },
+                        complete: () => {
+                            pricingEmailBtn.removeAttribute('disabled', '')
+                            pricingEmailBtn.firstElementChild.innerText = 'Subscribe'
+                            $(`#${preloaderId}`).hide()
+                        },
+                        success: (data) => {
+                            // no need using the data
+                            console.log('data', data)
+                            $(`#${notificationCardId}`).show()
+                            $(`#${notificationCardId}`).removeClass('alert-warning')
+                            $(`#${notificationCardId}`).addClass('alert-success')
+                            notificationDivElement.firstElementChild.innerHTML = `Thanks!😀, your <span style="font-weight: bold;">Email</span> has been added to our Mailing List, get ready for some Lovely Laundary Tips. <span class="icon-check pl-2"></span>`
+
+                            pricingEmailForm.reset();
+                            setTimeout((e) => {
+                                $(`#${notificationCardId}`).hide()
+                            }, 7000)
+                        },
+                        error: (err) => {
+                            // do something
+                            console.log('failed to submit: ', err)
+                            $(`#${notificationCardId}`).show()
+                            $(`#${notificationCardId}`).removeClass('alert-success')
+                            $(`#${notificationCardId}`).addClass('alert-warning')
+
+                            if (err['responseJSON']['email']) {
+                                let apiErrorMessage = err['responseJSON']['email']
+                                notificationDivElement.firstElementChild.innerHTML = `🙁 ${apiErrorMessage[0]} <span class="icon-exclamation-circle pl-2"></span>`
+                            } else {
+                                notificationDivElement.firstElementChild.innerHTML = `Opps!🙁 something went wrong, Please Try again. <span class="icon-exclamation-circle pl-2"></span>`
+                            }
+
+                            setTimeout((e) => {
+                                $(`#${notificationCardId}`).hide()
+                                pricingEmailBtn.firstElementChild.innerText = "Subscribe"
+                            }, 5000)
+                        },
+                    });
+
+                } else {
+                    $(`#${notificationCardId}`).show()
+                    $(`#${notificationCardId}`).removeClass('alert-success')
+                    $(`#${notificationCardId}`).addClass('alert-warning')
+                    notificationDivElement.firstElementChild.innerHTML = `Invalid Email!🙁 Please check what you entered and try again. <span class="icon-exclamation-circle pl-2"></span>`
+
+                    setTimeout((e) => {
+                        $(`#${notificationCardId}`).hide();
+                    }, 5000)
+
+                }
+
+            };
+
+
+            let notificationDiv2 = document.getElementById('notification-card2');
+            
+            let recaptcha = document.getElementById('g-recaptcha-pricing-email-subscribe')
+            let validity = document.getElementById('recaptchaPricingValidityEmail')
+
+            let grecaptchaRes = grecaptcha.getResponse(widgetId);
+
+            if (grecaptchaRes.length == 0) {
+                validity.classList.remove('d-none')
+            } else {
+                validity.classList.add('d-none')  
+                pricingSubscribeEmailApi(pricingEmail.value, 'notification-card2', notificationDiv2, 'pricingemailBtnSpinner');
+
+            }
+
+        });
+        
     </script>
 
     <script>

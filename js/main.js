@@ -363,7 +363,7 @@ $('#contactBtnSpinner').hide();
 $('#testimonialSpinner').hide();
 $('#faqSpinner').hide();
 $('#emailBtnSpinner').hide();
-$('#notification-card').hide();
+$('#notification-card1').hide();
 
 
 // variables
@@ -448,11 +448,10 @@ if (emailForm !== null) {
 
 		if (grecaptchaRes.length == 0 ) {
 			validity.classList.remove('d-none')
-			console.log('not pass')
 		} else {
-			console.log('passed')
 			validity.classList.add('d-none')
-			subscribeEmailPApi(subscribeEmail.value, notificationDiv);
+			subscribeEmailPApi(subscribeEmail.value, 'notification-card1', notificationDiv, 'emailBtnSpinner');
 		}
 	});
+
 }
