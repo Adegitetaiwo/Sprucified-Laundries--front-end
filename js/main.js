@@ -441,7 +441,7 @@ if (emailForm !== null) {
 		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
 		console.log('recaptcha: ', grecaptcha.getResponse(3))
-		let  grecaptchaRes = grecaptcha.getResponse(3);
+		let grecaptchaRes = grecaptcha.getResponse(3);
 
 		if (grecaptchaRes.length == 0 ) {
 			validity.classList.remove('d-none')
