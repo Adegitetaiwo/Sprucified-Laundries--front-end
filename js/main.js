@@ -440,9 +440,9 @@ if (emailForm !== null) {
 		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
 		console.log('recaptcha: ', grecaptcha)
-		console.log('grecaptcha.getResponse(): ', grecaptcha.getResponse())
+		let  grecaptchaRes = grecaptcha.getResponse()
 
-		if (grecaptcha.getResponse() === "" ) {
+		if (grecaptchaRes.length == 0 ) {
 			validity.classList.remove('d-none')
 		} else {
 			validity.classList.add('d-none')
