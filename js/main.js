@@ -437,12 +437,12 @@ if (emailForm !== null) {
 	// email subscribe
 	emailForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		let recaptcha = document.getElementById('g-recaptcha-email')
+		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
-		console.log('recaptcha: ', recaptcha)
-		console.log('recaptcha.getResponse(): ', recaptcha.getResponse())
+		console.log('recaptcha: ', grecaptcha)
+		console.log('grecaptcha.getResponse(): ', grecaptcha.getResponse())
 
-		if (recaptcha.getResponse() === "" ) {
+		if (grecaptcha.getResponse() === "" ) {
 			validity.classList.remove('d-none')
 		} else {
 			validity.classList.add('d-none')
