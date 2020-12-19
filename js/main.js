@@ -439,6 +439,9 @@ if (emailForm !== null) {
 		evt.preventDefault();
 		let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
+		console.log('recaptcha: ', recaptcha)
+		console.log('recaptcha.getResponse(): ', recaptcha.getResponse())
+
 		if (recaptcha.getResponse() === "" ) {
 			validity.classList.remove('d-none')
 		} else {
