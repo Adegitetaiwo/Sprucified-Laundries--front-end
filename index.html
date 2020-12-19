@@ -26,11 +26,11 @@
 
     <script type="text/javascript">
       var verifyCallback = function (response) {
-        alert(response);
+        let token = response
       };
 
       var onloadCallback = function () {
-          grecaptcha.render('g-recaptcha-shedule', {
+          var widget1 = grecaptcha.render('g-recaptcha-shedule', {
             'sitekey': '6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G'
           });
           grecaptcha.render('g-recaptcha-contact', {

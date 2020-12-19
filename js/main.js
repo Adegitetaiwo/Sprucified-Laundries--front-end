@@ -410,9 +410,9 @@ if (sheduleForm !== null) {
 	// shedule a Pick Up
 	sheduleForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		let recaptcha = document.getElementById('g-recaptcha-shedule')
+		let recaptcha = grecaptcha.getResponse(widget1)
 		let validity = document.getElementById('recaptchaValidityShedule')
-		if (recaptcha.getResponse() === "" ) {
+		if (recaptcha.length == 0 ) {
 			validity.classList.remove('d-none')
 		} else {
 			validity.classList.add('d-none')
@@ -441,6 +441,8 @@ if (emailForm !== null) {
 		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
 		// console.log('recaptcha: ', grecaptcha.getResponse('g-recaptcha-email-subscribe'))
+
+
 		let grecaptchaRes = grecaptcha.getResponse('g-recaptcha-email-subscribe');
 
 		if (grecaptchaRes.length == 0 ) {
