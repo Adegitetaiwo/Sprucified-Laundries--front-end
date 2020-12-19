@@ -24,20 +24,19 @@
 
     <link rel="stylesheet" href="css/style.css">
 
-    <script>
-      const RECAPTCHA_SITE_KEY = '6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G'
-      const onloadCallback = () => {
-        grecaptcha.render('g-recaptcha-shedule', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
-        grecaptcha.render('g-recaptcha-contact', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
-        grecaptcha.render('g-recaptcha-email-subscribe', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
 
-      };
-    </script>
-    
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
       async defer>
     </script>
-    
+    <script>
+      const RECAPTCHA_SITE_KEY = '6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G'
+        const CaptchaCallback = () => {
+          grecaptcha.render('g-recaptcha-shedule', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
+          grecaptcha.render('g-recaptcha-contact', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
+          grecaptcha.render('g-recaptcha-email-subscribe', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
+
+        };
+    </script>
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
@@ -604,7 +603,7 @@
                   </button>
                 </div>
                 <br /><br />
-                <div id="g-recaptcha-email-subscribe"></div>
+                <div class="g-recaptcha" id="g-recaptcha-email-subscribe" data-sitekey="6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G"></div>
                 <p class="d-none" id="recaptchaValidityEmail" style="color: #ff0000;">reCaptcha must be checked<span
                     class="icon-exclamation-circle ml-2"></span></p>
                 <br />
