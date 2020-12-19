@@ -439,12 +439,14 @@ if (emailForm !== null) {
 		evt.preventDefault();
 		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
-		console.log('recaptcha: ', grecaptcha)
-		let  grecaptchaRes = grecaptcha.getResponse()
+		console.log('recaptcha: ', grecaptcha.getResponse())
+		let  grecaptchaRes = grecaptcha.getResponse();
 
 		if (grecaptchaRes.length == 0 ) {
 			validity.classList.remove('d-none')
+			console.log('not pass')
 		} else {
+			console.log('passed')
 			validity.classList.add('d-none')
 			subscribeEmailPApi(subscribeEmail.value, notificationDiv);
 		}
