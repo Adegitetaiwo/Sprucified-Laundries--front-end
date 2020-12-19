@@ -404,6 +404,13 @@ if (typeof pricingListApi !== 'undefined') {
 	// get Pricing of services
 	pricingListApi();
 }
+const RECAPTCHA_SITE_KEY = '6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G'
+const CaptchaCallback = () => {
+	grecaptcha.render('shedulecaptchadiv', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
+	grecaptcha.render('contactcaptchadiv', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
+	grecaptcha.render('emailsubscribecaptchadiv', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
+
+};
 
 if (sheduleForm !== null) {
 	// shedule a Pick Up
@@ -439,8 +446,8 @@ if (emailForm !== null) {
 		evt.preventDefault();
 		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
-		console.log('recaptcha: ', grecaptcha.getResponse())
-		let  grecaptchaRes = grecaptcha.getResponse();
+		console.log('recaptcha: ', grecaptcha.getResponse(3))
+		let  grecaptchaRes = grecaptcha.getResponse(3);
 
 		if (grecaptchaRes.length == 0 ) {
 			validity.classList.remove('d-none')
