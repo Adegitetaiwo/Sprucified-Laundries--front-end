@@ -440,7 +440,7 @@ if (emailForm !== null) {
 		evt.preventDefault();
 		// let recaptcha = document.getElementById('g-recaptcha-email')
 		let validity = document.getElementById('recaptchaValidityEmail')
-		console.log('recaptcha: ', grecaptcha.getResponse(3))
+		console.log('recaptcha: ', grecaptcha.getResponse('g-recaptcha-email-subscribe'))
 		let grecaptchaRes = grecaptcha.getResponse(3);
 
 		if (grecaptchaRes.length == 0 ) {
