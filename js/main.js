@@ -409,20 +409,41 @@ if (sheduleForm !== null) {
 	// shedule a Pick Up
 	sheduleForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		shedulePickuPApi(sheduleFullname.value, sheduleEmail.value, shedulePhone.value, sheduleBusStop.value, sheduleAddress.value, sheduleNumberOfItem.value, sheduleMessage.value, notificationDiv);
+		let recaptcha = $('#g-recaptcha-shedule').val()
+		let validity = document.getElementById('recaptchaValidityShedule')
+		if (recaptcha === "") {
+			validity.classList.remove('d-none')
+		} else {
+			validity.classList.add('d-none')
+			shedulePickuPApi(sheduleFullname.value, sheduleEmail.value, shedulePhone.value, sheduleBusStop.value, sheduleAddress.value, sheduleNumberOfItem.value, sheduleMessage.value, notificationDiv);
+		}
 	});
 }
 if (contactForm !== null) {
 	// contacts events
 	contactForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		contactApi(contactFullname.value, contactEmail.value, contactSubject.value, contactMessage.value, notificationDiv)
+		let recaptcha = $('#g-recaptcha-contact').val()
+		let validity = document.getElementById('recaptchaValidityContact')
+		if (recaptcha === "") {
+			validity.classList.remove('d-none')
+		} else {
+			validity.classList.add('d-none')
+			contactApi(contactFullname.value, contactEmail.value, contactSubject.value, contactMessage.value, notificationDiv)
+		}
 	});
 }
 if (contactForm !== null) {
 	// email subscribe
 	emailForm.addEventListener('submit', (evt) => {
 		evt.preventDefault();
-		subscribeEmailPApi(subscribeEmail.value, notificationDiv);
+		let recaptcha = $('#g-recaptcha-email').val()
+		let validity = document.getElementById('recaptchaValidityEmail')
+		if (recaptcha === "") {
+			validity.classList.remove('d-none')
+		} else {
+			validity.classList.add('d-none')
+			subscribeEmailPApi(subscribeEmail.value, notificationDiv);
+		}
 	});
 }

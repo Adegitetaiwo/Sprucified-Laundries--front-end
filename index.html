@@ -206,7 +206,8 @@
                   <textarea name="" id="sheduleMessage" class="form-control" placeholder="Additional Message - i.e. something that can help us serve you better." cols="30" rows="10" required></textarea>
                 </div>
               </div><br/>
-              <div class="g-recaptcha" data-sitekey="6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G"></div>
+              <div class="g-recaptcha" id="g-recaptcha-shedule" data-sitekey="6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G"></div>
+              <p class="d-none" id="recaptchaValidityShedule" style="color: #ff0000;">reCaptcha must be checked<span class="icon-exclamation-circle ml-2"></span></p>
               <br/>
               <div class="form-group row">
                 <div class="col-md-12 mr-auto">
@@ -482,6 +483,11 @@
                   <textarea name="" id="contactMessage" class="form-control" placeholder="Write your message." cols="30" rows="10" required></textarea>
                 </div>
               </div>
+              <br />
+              <div class="g-recaptcha" id="g-recaptcha-contact" data-sitekey="6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G"></div>
+              <p class="d-none" id="recaptchaValidityContact" style="color: #ff0000;">reCaptcha must be checked<span
+                  class="icon-exclamation-circle ml-2"></span></p>
+              <br />
               <div class="form-group row">
                 <div class="col-md-12 mr-auto">
                   <button type="submit" id="contactBtn" class="btn btn-block btn-primary text-white py-2 px-5">
@@ -585,6 +591,11 @@
                     </span>
                   </button>
                 </div>
+                <br /><br />
+                <div class="g-recaptcha" id="g-recaptcha-email" data-sitekey="6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G"></div>
+                <p class="d-none" id="recaptchaValidityEmail" style="color: #ff0000;">reCaptcha must be checked<span
+                    class="icon-exclamation-circle ml-2"></span></p>
+                <br />
               </div>
             </form>
 
@@ -595,9 +606,9 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
               <p class="copyright"><small>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Developed with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://twitter.com/TaiwoAdegite" target="__blank">adegitetaiwo</a> | Template by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
+            </small></p>
         
             </div>
           </div>
