@@ -404,13 +404,7 @@ if (typeof pricingListApi !== 'undefined') {
 	// get Pricing of services
 	pricingListApi();
 }
-const RECAPTCHA_SITE_KEY = '6LcXGAwaAAAAACERGUsyY2n7a9plhQTI6X-10q2G'
-const CaptchaCallback = () => {
-	grecaptcha.render('shedulecaptchadiv', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
-	grecaptcha.render('contactcaptchadiv', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
-	grecaptcha.render('emailsubscribecaptchadiv', { 'sitekey': `${RECAPTCHA_SITE_KEY}` });
 
-};
 
 if (sheduleForm !== null) {
 	// shedule a Pick Up
