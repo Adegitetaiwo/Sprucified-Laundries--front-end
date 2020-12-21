@@ -43,9 +43,9 @@
         };
     </script>
     
-    <script async src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" defer>
-    </script>
-
+    <!-- <script async src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" defer>
+    </script> -->
+    
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
   
@@ -565,8 +565,23 @@
             showCursor: true
             });
             </script>
+  <script type="text/javascript">
+    window.onload = () => {
+
+    };
+    // trigger loading api.js (recaptcha.js) script
+    (function () {
+      let head = document.getElementsByTagName('head')[0];
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+      head.appendChild(script);
+    })();
+  </script>
+
   <script src="js/api.js"></script>
   <script src="js/main.js"></script>
+
 
   </body>
 </html>
