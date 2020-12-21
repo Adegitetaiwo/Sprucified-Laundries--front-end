@@ -369,6 +369,8 @@
                             pricingEmailBtn.removeAttribute('disabled', '')
                             pricingEmailBtn.firstElementChild.innerText = 'Subscribe'
                             $(`#${preloaderId}`).hide()
+                            grecaptcha.reset(widgetId3);
+                
                         },
                         success: (data) => {
                             // no need using the data
