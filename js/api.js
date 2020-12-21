@@ -23,6 +23,8 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
             sheduleBtn.removeAttribute('disabled', '')
             sheduleBtn.firstElementChild.innerText = 'Submit'
             $('#sheduleBtnSpinner').hide()
+            // reset google grecaptcha
+            grecaptcha.reset();
         },
         success: (data) => {
             // no need using the data
@@ -81,6 +83,8 @@ const contactApi = (fullname, email, subject, message, notificationDivElement) =
             contactBtn.removeAttribute('disabled', '')
             contactBtn.firstElementChild.innerText = 'Submit'
             $('#contactBtnSpinner').hide()
+            // reset google grecaptcha
+            grecaptcha.reset();
         },
         success: (data) => {
             // no need using the data
@@ -313,6 +317,8 @@ const subscribeEmailPApi = (email, notificationCardId, notificationDivElement, p
                 emailBtn.removeAttribute('disabled', '')
                 emailBtn.firstElementChild.innerText = 'Subscribe'
                 $(`#${preloaderId}`).hide()
+                // reset google grecaptcha
+                grecaptcha.reset();
             },
             success: (data) => {
                 // no need using the data

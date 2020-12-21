@@ -411,6 +411,7 @@ window.onload = (evt)=> {
 
 
 	if (sheduleForm !== null) {
+		
 		// shedule a Pick Up
 		sheduleForm.addEventListener('submit', (evt) => {
 			evt.preventDefault();
@@ -459,6 +460,12 @@ window.onload = (evt)=> {
 		// email subscribe
 		emailForm.addEventListener('submit', (evt) => {
 			evt.preventDefault();
+			if (sheduleForm.ActiveForm) {
+				console.log("form is not active")
+			} else {
+				console.log("form is active")
+			}
+			
 			// let recaptcha = document.getElementById('g-recaptcha-email')
 			let validity = document.getElementById('recaptchaValidityEmail')
 			// console.log('recaptcha: ', grecaptcha.getResponse('g-recaptcha-email-subscribe'))
