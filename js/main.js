@@ -414,9 +414,10 @@ window.onload = (evt)=> {
 		// shedule a Pick Up
 		sheduleForm.addEventListener('submit', (evt) => {
 			evt.preventDefault();
+			let validity = document.getElementById('recaptchaValidityShedule')
+
 			if (typeof grecaptcha !== "undefined"){
 				let recaptcha = grecaptcha.getResponse(widgetId1)
-				let validity = document.getElementById('recaptchaValidityShedule')
 				if (recaptcha.length == 0) {
 					validity.classList.remove('d-none')
 				} else {
