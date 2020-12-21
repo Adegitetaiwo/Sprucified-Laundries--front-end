@@ -391,7 +391,10 @@ window.onload = (evt)=> {
 	// get Gallary Image
 
 	if (typeof gallaryApi !== 'undefined') {
-		gallaryApi();
+		setTimeout((e)=>{
+			gallaryApi();
+		}, 2000)
+		
 	}
 	if (typeof testimonialApi !== 'undefined') {
 		// get testimonials

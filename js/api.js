@@ -114,51 +114,54 @@ const contactApi = (fullname, email, subject, message, notificationDivElement) =
 
 const gallaryApi = () => {
     console.log('Gallary Api was called..')
-    $.ajax({
-        type: 'GET',
-        url: "https://laundary-api.herokuapp.com/api/gallary/?q=8",
-        headers: {
-        },
-        beforeSend: () => {
-            $('#gallarySpinner').show()
-        },
-        complete: () => {
-            $('#gallarySpinner').hide()
-        },
-        success: (data) => {
-            // no need using the data
-            console.log('data', data)
-            
-            let responce = data['response']
-            if (responce.length > 0) {
-                let gallaryData =  ``
-                responce.forEach(element => {
-                    gallaryData += `<a class="col-6 col-md-6 col-lg-4 col-xl-3 gal-item d-block" href="${element['image_url']}" data-fancybox="gal">
+    setTimeout((e)=>{
+        $.ajax({
+            type: 'GET',
+            url: "https://laundary-api.herokuapp.com/api/gallary/?q=8",
+            headers: {
+            },
+            beforeSend: () => {
+                $('#gallarySpinner').show()
+            },
+            complete: () => {
+                $('#gallarySpinner').hide()
+            },
+            success: (data) => {
+                // no need using the data
+                console.log('data', data)
+
+                let responce = data['response']
+                if (responce.length > 0) {
+                    let gallaryData = ``
+                    responce.forEach(element => {
+                        gallaryData += `<a class="col-6 col-md-6 col-lg-4 col-xl-3 gal-item d-block" href="${element['image_url']}" data-fancybox="gal">
                     <img src="${element['image_url']}" alt="${element['description']}" class="img-fluid">
                 </a>`
-                
-                gallaryContent.innerHTML = gallaryData;
-                });
 
-            } else {
-                gallaryContent.innerHTML = `<div class="card alert alert-warning m-auto text-center">
+                        gallaryContent.innerHTML = gallaryData;
+                    });
+
+                } else {
+                    gallaryContent.innerHTML = `<div class="card alert alert-warning m-auto text-center">
                                                 <p>Opps! we have nothing here yet <span class="icon-exclamation-circle ml-2"></span></p>
                                             </div>`
-            }
+                }
 
-        },
-        error: (err) => {
-            // do something
-            console.log('failed to submit: ', err)
-            $('#gallarySpinner').hide()
-            gallaryContent.innerHTML = `<div class="container text-center">
+            },
+            error: (err) => {
+                // do something
+                console.log('failed to submit: ', err)
+                $('#gallarySpinner').hide()
+                gallaryContent.innerHTML = `<div class="container text-center">
                                             <div class="card alert alert-warning m-auto">
                                                 <p>Failed to fecth data, Please check your internet connection <span class="icon-exclamation-circle ml-2"></span></p>
                                             </div>
                                         </div>`
-            
-        },
-    });
+
+            },
+        });
+    }, 2000)
+   
 
 };
 
