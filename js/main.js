@@ -414,29 +414,44 @@ window.onload = (evt)=> {
 		// shedule a Pick Up
 		sheduleForm.addEventListener('submit', (evt) => {
 			evt.preventDefault();
-			let recaptcha = grecaptcha.getResponse(widgetId1)
-			let validity = document.getElementById('recaptchaValidityShedule')
-			if (recaptcha.length == 0) {
-				validity.classList.remove('d-none')
+			if (typeof grecaptcha !== "undefined"){
+				let recaptcha = grecaptcha.getResponse(widgetId1)
+				let validity = document.getElementById('recaptchaValidityShedule')
+				if (recaptcha.length == 0) {
+					validity.classList.remove('d-none')
+				} else {
+					validity.classList.add('d-none')
+					shedulePickuPApi(sheduleFullname.value, sheduleEmail.value, shedulePhone.value, sheduleBusStop.value, sheduleAddress.value, sheduleNumberOfItem.value, sheduleMessage.value, notificationDiv);
+				}
 			} else {
-				validity.classList.add('d-none')
-				shedulePickuPApi(sheduleFullname.value, sheduleEmail.value, shedulePhone.value, sheduleBusStop.value, sheduleAddress.value, sheduleNumberOfItem.value, sheduleMessage.value, notificationDiv);
+				validity.innerHTML = `cannot find reCaptcha! Please check your internet connection and reload the page <span
+					  class="icon-exclamation-circle ml-2"></span></p>`
+				validity.classList.remove('d-none')
 			}
+			
 		});
 	}
 	if (contactForm !== null) {
 		// contacts events
 		contactForm.addEventListener('submit', (evt) => {
 			evt.preventDefault();
-			let recaptcha = grecaptcha.getResponse(widgetId2);
-
 			let validity = document.getElementById('recaptchaValidityContact')
-			if (recaptcha.length() == 0) {
-				validity.classList.remove('d-none')
+
+			if (typeof grecaptcha !== "undefined"){
+				let recaptcha = grecaptcha.getResponse(widgetId2);
+
+				if (recaptcha.length() == 0) {
+					validity.classList.remove('d-none')
+				} else {
+					validity.classList.add('d-none')
+					contactApi(contactFullname.value, contactEmail.value, contactSubject.value, contactMessage.value, notificationDiv)
+				}
 			} else {
-				validity.classList.add('d-none')
-				contactApi(contactFullname.value, contactEmail.value, contactSubject.value, contactMessage.value, notificationDiv)
+				validity.innerHTML = `cannot find reCaptcha! Please check your internet connection and reload the page <span
+					  class="icon-exclamation-circle ml-2"></span></p>`
+				validity.classList.remove('d-none')
 			}
+			
 		});
 	}
 	if (emailForm !== null) {
@@ -447,15 +462,22 @@ window.onload = (evt)=> {
 			let validity = document.getElementById('recaptchaValidityEmail')
 			// console.log('recaptcha: ', grecaptcha.getResponse('g-recaptcha-email-subscribe'))
 
+			if (typeof grecaptcha !== "undefined"){
+				let grecaptchaRes = grecaptcha.getResponse(widgetId3);
 
-			let grecaptchaRes = grecaptcha.getResponse(widgetId3);
-
-			if (grecaptchaRes.length == 0) {
+				if (grecaptchaRes.length == 0) {
+					validity.classList.remove('d-none')
+				} else {
+					validity.classList.add('d-none')
+					subscribeEmailPApi(subscribeEmail.value, 'notification-card1', notificationDiv, 'emailBtnSpinner');
+				}
+			}else {
+				validity.innerHTML = `cannot find reCaptcha! Please check your internet connection and reload the page <span
+					  class="icon-exclamation-circle ml-2"></span></p>`
 				validity.classList.remove('d-none')
-			} else {
-				validity.classList.add('d-none')
-				subscribeEmailPApi(subscribeEmail.value, 'notification-card1', notificationDiv, 'emailBtnSpinner');
+
 			}
+			
 		});
 
 	}
