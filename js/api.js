@@ -29,22 +29,22 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
         success: (data) => {
             // no need using the data
             console.log('data', data)
-            $('#notification-card').show()
-            $('#notification-card').removeClass('alert-warning')
-            $('#notification-card').addClass('alert-success')
+            $('#notification-card1').show()
+            $('#notification-card1').removeClass('alert-warning')
+            $('#notification-card1').addClass('alert-success')
             notificationDivElement.firstElementChild.innerHTML = `Thanks!😀, your <span style="font-weight: bold;">Shedule</span> has been received, we'll get in-touch with you shortly <span class="icon-check pl-2"></span>`
 
             sheduleForm.reset()
             setTimeout((e) => {
-                $('#notification-card').hide()
+                $('#notification-card1').hide()
             }, 7000)
         },
         error: (err) => {
             // do something
             console.log('failed to submit: ', err)
-            $('#notification-card').show()
-            $('#notification-card').removeClass('alert-success')
-            $('#notification-card').addClass('alert-warning')
+            $('#notification-card1').show()
+            $('#notification-card1').removeClass('alert-success')
+            $('#notification-card1').addClass('alert-warning')
 
             if (err['responseJSON']['phone_number']) {
                 notificationDivElement.firstElementChild.innerHTML = `🙁 ${err['responseJSON']['phone_number'][0]}<span class="icon-exclamation-circle pl-2"></span>`
@@ -53,7 +53,7 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
             }
 
             setTimeout((e) => {
-                $('#notification-card').hide()
+                $('#notification-card1').hide()
                 sheduleBtn.firstElementChild.innerText = "Submit"
             }, 5000)
         },
@@ -89,26 +89,26 @@ const contactApi = (fullname, email, subject, message, notificationDivElement) =
         success: (data) => {
             // no need using the data
             console.log('data', data)
-            $('#notification-card').show()
-            $('#notification-card').removeClass('alert-warning')
-            $('#notification-card').addClass('alert-success')
+            $('#notification-card1').show()
+            $('#notification-card1').removeClass('alert-warning')
+            $('#notification-card1').addClass('alert-success')
             notificationDivElement.firstElementChild.innerHTML = `Thanks!😀, your <span style="font-weight: bold;">Contact</span> has been sent, we'll get in touch with you through your email <span class="icon-check pl-2"></span>`
 
             contactForm.reset()
             setTimeout((e) => {
-                $('#notification-card').hide()
+                $('#notification-card1').hide()
             }, 7000)
         },
         error: (err) => {
             // do something
             console.log('failed to submit: ', err)
-            $('#notification-card').show()
-            $('#notification-card').removeClass('alert-success')
-            $('#notification-card').addClass('alert-warning')
+            $('#notification-card1').show()
+            $('#notification-card1').removeClass('alert-success')
+            $('#notification-card1').addClass('alert-warning')
             notificationDivElement.firstElementChild.innerHTML = `🙁 Failed to Send.. Please try again! <span class="icon-exclamation-circle pl-2"></span>`
 
             setTimeout((e) => {
-                $('#notification-card').hide()
+                $('#notification-card1').hide()
                 contactBtn.firstElementChild.innerText = "Send Message"
             }, 5000)
         },

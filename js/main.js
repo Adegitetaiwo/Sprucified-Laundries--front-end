@@ -442,7 +442,7 @@ window.onload = (evt)=> {
 			if (typeof grecaptcha !== "undefined"){
 				let recaptcha = grecaptcha.getResponse(widgetId2);
 
-				if (recaptcha.length() == 0) {
+				if (recaptcha.length == 0) {
 					validity.classList.remove('d-none')
 				} else {
 					validity.classList.add('d-none')
