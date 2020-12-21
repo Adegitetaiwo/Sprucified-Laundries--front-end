@@ -1,4 +1,3 @@
-window.onload = (evt) => {
 AOS.init({
  	duration: 800,
  	easing: 'slide',
@@ -367,6 +366,7 @@ $('#faqSpinner').hide();
 $('#emailBtnSpinner').hide();
 $('#notification-card1').hide();
 
+window.onload = (evt)=> {
 	// variables
 	const sheduleForm = document.getElementById('sheduleForm'),
 		sheduleFullname = document.getElementById('sheduleFullname'),
