@@ -570,13 +570,17 @@
 
     };
     // trigger loading api.js (recaptcha.js) script
-    (function () {
-      let head = document.getElementsByTagName('head')[0];
-      let script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
-      head.appendChild(script);
-    })();
+    setTimeout((e)=>{
+      (function () {
+        let head = document.getElementsByTagName('head')[0];
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+        head.appendChild(script);
+      })();
+      
+    }, 3000)
+    
   </script>
 
   <script src="js/api.js"></script>
