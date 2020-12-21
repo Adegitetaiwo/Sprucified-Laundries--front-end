@@ -361,8 +361,8 @@ jQuery(document).ready(function($) {
 // hide spinners, notificationDiv
 $('#sheduleBtnSpinner').hide();
 $('#contactBtnSpinner').hide();
-$('#testimonialSpinner').hide();
-$('#faqSpinner').hide();
+// $('#testimonialSpinner').hide();
+// $('#faqSpinner').hide();
 $('#emailBtnSpinner').hide();
 $('#notification-card1').hide();
 
