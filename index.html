@@ -7,7 +7,9 @@
     
     <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Playfair+Display:400,900" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Playfair+Display:400,900" media="print" onload="this.media='all'; this.onload=null;">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Playfair+Display:400,900" media="print"
+    onload="this.media='all'; this.onload=null;">
 
    <link rel="stylesheet" href="fonts/icomoon/style.css">
    <link rel="stylesheet" href="css/bootstrap.min.css" media="print" onload="this.media='all'; this.onload=null;">
@@ -19,21 +21,6 @@
   <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" media="print" onload="this.media='all'; this.onload=null;">
   <link rel="stylesheet" href="css/aos.css" media="print" onload="this.media='all'; this.onload=null;">
   <link rel="stylesheet" href="css/style.css">
-    
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css"> -->
 
     <script type="text/javascript" async>
       var widgetId1;
@@ -148,9 +135,22 @@
         <div class="row">
           <div class="col-12" style="margin-top: -7%;">
             <div class="slide-one-item home-slider owl-carousel">
-              <img src="images/header_image_1.jpg" alt="Image" class="img-fluid img">
-              <img src="images/header_image_2.jpg" alt="Image" class="img-fluid img">
-              <img src="images/header_image_3.jpg" alt="Image" class="img-fluid img">
+              <picture>
+                <source type="image/webp" srcset="images/header_image_1.webp">
+                <source type="image/jpg" srcset="images/header_image_1.jpg">
+                <img src="images/header_image_1.webp" alt="Image" class="img-fluid img">
+              </picture>
+              <picture>
+                <source type="image/webp" srcset="images/header_image_2.webp">
+                <source type="image/jpg" srcset="images/header_image_2.jpg">
+                <img src="images/header_image_2.webp" alt="Image" class="img-fluid img">
+              </picture>
+              <picture>
+                <source type="image/webp" srcset="images/header_image_3.webp">
+                <source type="image/jpg" srcset="images/header_image_3.jpg">
+                <img src="images/header_image_3.webp" alt="Image" class="img-fluid img">
+              </picture>
+
             </div>
           </div>
         </div>
@@ -173,8 +173,12 @@
         </div>
 
         <div class="container">
-          <div class="col-lg-3 text-center about-avater">
-            <img src="images/person_3.png" alt="Image" class="rounded-circle img-fluid w-50 mb-4">
+          <div class="col-lg-3 text-center about-avater">            
+            <picture>
+              <source type="image/webp" srcset="images/person_3.webp">
+              <source type="image/jpg" srcset="images/person_3.jpg">
+              <img src="images/person_3.webp" alt="Image" class="img-fluid img" style="border-radius: 50%;">
+            </picture>
             <h3 class="h4 text-black">Adegite Shola</h3>
             <p>Founder and CEO - Sprucified Laundries</p>
             <p>
