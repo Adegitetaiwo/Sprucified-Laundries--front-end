@@ -587,6 +587,8 @@
         let script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+        script.defer = ""
+        script.async = ""
         head.appendChild(script);
       })();
       

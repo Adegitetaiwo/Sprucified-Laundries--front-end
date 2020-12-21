@@ -50,8 +50,8 @@
 
         };
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
-    </script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script> -->
 
 </head>
 
@@ -254,7 +254,27 @@
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- <script src="js/api.js"></script> -->
+    <script type="text/javascript">
+        window.onload = () => {
+
+        };
+        // trigger loading api.js (recaptcha.js) script
+        setTimeout((e) => {
+            (function () {
+                let head = document.getElementsByTagName('head')[0];
+                let script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+                script.defer = ""
+                script.async = ""
+                head.appendChild(script);
+
+            })();
+
+        }, 3000)
+
+    </script>
+
     <script src="js/main.js"></script>
     <script>
         const pricingListApi = () => {
@@ -405,18 +425,25 @@
 
             let notificationDiv2 = document.getElementById('notification-card2');
             
-            let recaptcha = document.getElementById('g-recaptcha-pricing-email-subscribe')
             let validity = document.getElementById('recaptchaPricingValidityEmail')
 
-            let grecaptchaRes = grecaptcha.getResponse(widgetId);
+            if (typeof grecaptcha !== "undefined"){
+                let grecaptchaRes = grecaptcha.getResponse(widgetId);
 
-            if (grecaptchaRes.length == 0) {
-                validity.classList.remove('d-none')
+                if (grecaptchaRes.length == 0) {
+                    validity.classList.remove('d-none')
+                } else {
+                    validity.classList.add('d-none')
+                    pricingSubscribeEmailApi(pricingEmail.value, 'notification-card2', notificationDiv2, 'pricingemailBtnSpinner');
+
+                }
             } else {
-                validity.classList.add('d-none')  
-                pricingSubscribeEmailApi(pricingEmail.value, 'notification-card2', notificationDiv2, 'pricingemailBtnSpinner');
-
+                validity.innerHTML = `cannot find reCaptcha! Please check your internet connection and reload the page <span
+					  class="icon-exclamation-circle ml-2"></span></p>`
+                validity.classList.remove('d-none')
             }
+
+            
 
         });
         
