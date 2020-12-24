@@ -47,10 +47,10 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
             $('#notification-card1').removeClass('alert-success')
             $('#notification-card1').addClass('alert-warning')
 
-            if (err['responseJSON']['phone_number']) {
+            if (typeof err['responseJSON'] !== "undefined") {
                 notificationDivElement.firstElementChild.innerHTML = `🙁 ${err['responseJSON']['phone_number'][0]}<span class="icon-exclamation-circle pl-2"></span>`
             } else {
-                notificationDivElement.firstElementChild.innerHTML = `🙁 Failed to Submit.. Please try again! <span class="icon-exclamation-circle pl-2"></span>`
+                notificationDivElement.firstElementChild.innerHTML = `🙁 Failed to Submit..(I think it from us..) Please try again! <span class="icon-exclamation-circle pl-2"></span>`
             }
 
             setTimeout((e) => {
