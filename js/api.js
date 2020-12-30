@@ -85,7 +85,7 @@ const contactApi = (fullname, email, subject, message, notificationDivElement) =
             contactBtn.firstElementChild.innerText = 'Submit'
             $('#contactBtnSpinner').hide()
             // reset google grecaptcha
-            grecaptcha.reset(widgetId1);
+            grecaptcha.reset(widgetId2);
         },
         success: (data) => {
             // no need using the data
