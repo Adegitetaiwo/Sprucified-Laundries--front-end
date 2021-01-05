@@ -1972,7 +1972,11 @@ figure figcaption {
 .about-avater {
   margin: auto;
 }
-
+.about-avater img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
 .pricing-btn-div {
   margin: auto;
   margin-top: 40px;
