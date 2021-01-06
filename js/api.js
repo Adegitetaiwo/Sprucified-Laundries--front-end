@@ -42,7 +42,7 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
         },
         success: (data) => {
             // no need using the data
-            console.log('data', data)
+            // console.log('data', data)
             $('#notification-card1').show()
             $('#notification-card1').removeClass('alert-warning')
             $('#notification-card1').addClass('alert-success')
@@ -102,7 +102,7 @@ const contactApi = (fullname, email, subject, message, notificationDivElement) =
         },
         success: (data) => {
             // no need using the data
-            console.log('data', data)
+            // console.log('data', data)
             $('#notification-card1').show()
             $('#notification-card1').removeClass('alert-warning')
             $('#notification-card1').addClass('alert-success')
@@ -146,7 +146,7 @@ const gallaryApi = () => {
             },
             success: (data) => {
                 // no need using the data
-                console.log('data', data)
+                // console.log('data', data)
 
                 let responce = data['response']
                 if (responce.length > 0) {
@@ -185,6 +185,11 @@ const gallaryApi = () => {
 
 const testimonialApi = () => {
     console.log('Testimonial Api was called..')
+
+    let testimonialContainer = document.getElementById('carouselExampleIndicators')
+    let testimonialIndicatorId = document.getElementById('testimonialIndicatorId')
+    let testimonialContentInnerId = document.getElementById('testimonialContentInnerId')
+
     $.ajax({
         type: 'GET',
         url: "https://laundary-api.herokuapp.com/api/testimonials/",
@@ -198,31 +203,55 @@ const testimonialApi = () => {
         },
         success: (data) => {
             // no need using the data
-            console.log('data', data)
+            // console.log('data', data)
 
             let responce = data['responce']
+            
             if (responce.length > 0) {
+
+                let testimonialIndicators = ``
                 let testimonialData = ``
-                responce.forEach(element => {
-                    testimonialData += `<div>
-                                            <div class="block-testimony-1 text-center">
                 
+                for (let index = 0; index < responce.length; index++) {
+                    const element = responce[index];
+                    
+                    testimonialIndicators += `<li class="" data-target="#carouselExampleIndicators" data-slide-to="${index}" style="background-color: #037ef3;width: 10px; height: 10px; border-radius: 50%;"></li>`
+
+
+                    testimonialData += `<div class="carousel-item">
+                                            <div class="block-testimony-1 text-center m-auto" style="max-width: 700px;">
                                                 <blockquote class="mb-4">
                                                     <p>&ldquo;${element['testimony']}&rdquo;</p>
                                                 </blockquote>
-
+          
                                                 <figure>
                                                     <img src="${element['image_url']}" alt="Image" class="img-fluid rounded-circle mx-auto">
                                                 </figure>
-                                                <h3 class="font-size-20 text-black">${element['full_name']}</h3>
+                                                <h3 class="font-size-20 mb-4 text-black">${element['full_name']}</h3>
                                             </div>
                                         </div>`
 
-                    testimonialContent.innerHTML = testimonialData;
-                });
 
+                };
+            
+
+                testimonialIndicatorId.removeAttribute('style');
+                testimonialContentInnerId.removeAttribute('style');
+
+                testimonialIndicatorId.innerHTML = testimonialIndicators;
+
+                testimonialContentInnerId.innerHTML = testimonialData;
+
+                testimonialIndicatorId.firstElementChild.setAttribute('class', 'active')
+                testimonialContentInnerId.firstElementChild.classList.add('active')
+
+                                      
             } else {
-                testimonialContent.innerHTML = `<div class="card alert alert-warning m-auto text-center">
+
+                testimonialIndicatorId.style.display = 'none';
+                testimonialContentInnerId.style.display = 'none';
+
+                testimonialContainer.innerHTML = `<div class="card alert alert-warning m-auto text-center">
                                                 <p>Opps! we have no data here yet. <span class="icon-exclamation-circle ml-2"></span></p>
                                             </div>`
             }
@@ -232,7 +261,11 @@ const testimonialApi = () => {
             // do something
             console.log('failed to submit: ', err)
             $('#testimonialSpinner').hide()
-            testimonialContent.innerHTML = `<div class="card alert alert-warning m-auto text-center">
+
+            testimonialIndicatorId.style.display = 'none';
+            testimonialContentInnerId.style.display = 'none';
+
+            testimonialContainer.innerHTML = `<div class="card alert alert-warning m-auto text-center">
                                                     <p>Failed to fecth customer data, Please check your internet connection <span class="icon-exclamation-circle ml-2"></span></p>
                                                 </div>`
 
@@ -256,7 +289,7 @@ const faqApi = () => {
         },
         success: (data) => {
             // no need using the data
-            console.log('data', data)
+            // console.log('data', data)
 
             let responce = data['response']
             if (responce.length > 0) {
@@ -336,7 +369,7 @@ const subscribeEmailPApi = (email, notificationCardId, notificationDivElement, p
             },
             success: (data) => {
                 // no need using the data
-                console.log('data', data)
+                // console.log('data', data)
                 $(`#${notificationCardId}`).show()
                 $(`#${notificationCardId}`).removeClass('alert-warning')
                 $(`#${notificationCardId}`).addClass('alert-success')
