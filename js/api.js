@@ -29,7 +29,7 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
 
             setTimeout((e) => {
                 $('#notification-card1').hide()
-            }, 8000)
+            }, 18000)
 
         },
         complete: () => {
