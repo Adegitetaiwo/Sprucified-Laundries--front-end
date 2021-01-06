@@ -21,7 +21,10 @@ const shedulePickuPApi = (fullname, email, phoneNumber, busStop, address, number
 
             setTimeout((e) => {
                 $('#notification-card1').show()
+                $('#notification-card1').removeClass('alert-success')
+                $('#notification-card1').addClass('alert-warning')
                 notificationDivElement.firstElementChild.innerHTML = `🙁 The process seem to be taking longer than expected please check your internet connection and refresh the page OR wait a little more. <span class="icon-exclamation-circle pl-2"></span>`
+
             }, 2000)
 
             setTimeout((e) => {
